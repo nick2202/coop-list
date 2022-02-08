@@ -15,11 +15,7 @@
     <description>coop-list-frontend</description>
 
     <dependencies>
-        <dependency>
-            <groupId>de.nick2202</groupId>
-            <artifactId>coop-list</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
 </project>

@@ -7,7 +7,6 @@
         <groupId>de.nick2202</groupId>
         <artifactId>coop-list</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>coop-list-backend</artifactId>
@@ -15,11 +14,6 @@
     <description>coop-list-backend</description>
 
     <dependencies>
-        <dependency>
-            <groupId>de.nick2202</groupId>
-            <artifactId>coop-list</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>

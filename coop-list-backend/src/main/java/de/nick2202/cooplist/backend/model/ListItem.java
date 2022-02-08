@@ -1,8 +1,6 @@
 package de.nick2202.cooplist.backend.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,32 +12,32 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BenoetigtesProdukt {
+public class ListItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "benoet_prod_id")
+    @Column(name = "list_item_id")
     private Long id;
 
     @NotNull
     @ManyToOne
-    private Wg wg;
+    private Item item;
 
     @NotNull
     @ManyToOne
-    private Produkt produkt;
+    private Group group;
 
     @Column(updatable = false)
     @CreationTimestamp
-    private Timestamp eintragungszeitpunkt;
+    private Timestamp timeAdded;
 
     @UpdateTimestamp
-    private Timestamp kaufzeitpunkt = null;
+    private Timestamp timeChecked = null;
 
-    private boolean gekauft = false;
+    private boolean checked = false;
 
-    public BenoetigtesProdukt(@NotNull Produkt produkt, @NotNull Wg wg) {
-        this.produkt = produkt;
-        this.wg = wg;
+    public ListItem(Item item, Group group) {
+        this.item = item;
+        this.group = group;
     }
 }

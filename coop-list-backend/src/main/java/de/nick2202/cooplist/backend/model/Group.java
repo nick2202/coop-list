@@ -2,6 +2,7 @@ package de.nick2202.cooplist.backend.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,29 +12,23 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Wg {
+public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "wg_id")
+    @Column(name = "group_id")
     private Long id;
-
-    @OneToMany(mappedBy = "wg")
-    private List<Bewohner> bewohnerListe;
-
-    @OneToMany(mappedBy = "wg")
-    private List<BenoetigtesProdukt> benoetigtesProduktListe;
 
     @Column(unique = true)
     private String name;
 
-    private String strasse;
+    @OneToMany(mappedBy = "group")
+    private List<ListItem> listItems;
 
-    private int hausnummer;
+    @ManyToMany(mappedBy = "groups")
+    private List<User> users;
 
-    private int plz;
-
-    private String ort;
-
-
+    public Group(String name) {
+        this.name = name;
+    }
 }

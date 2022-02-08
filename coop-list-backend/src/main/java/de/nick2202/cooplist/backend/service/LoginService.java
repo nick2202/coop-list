@@ -1,7 +1,7 @@
 package de.nick2202.cooplist.backend.service;
 //
 //import de.nick2202.cooplist.backend.exceptions.BusinessException;
-//import de.nick2202.cooplist.backend.repository.BewohnerRepository;
+//import de.nick2202.cooplist.backend.repository.UserRepository;
 //import lombok.AllArgsConstructor;
 //import org.springframework.stereotype.Service;
 //
@@ -9,7 +9,7 @@ package de.nick2202.cooplist.backend.service;
 //@AllArgsConstructor
 //public class LoginService {
 //
-//    private final BewohnerRepository repo;
+//    private final UserRepository repo;
 //
 //    public boolean validateUser(String username, String password) throws BusinessException {
 //        if (username.equalsIgnoreCase(repo.findByBenutzername(username).toString())

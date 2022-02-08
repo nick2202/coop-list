@@ -2,6 +2,7 @@ package de.nick2202.cooplist.backend.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,25 +13,20 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Produkt {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "prod_id")
+    @Column(name = "item_id")
     private Long id;
 
     @NotNull
     private String name;
 
-    private String preis;
+    @OneToMany(mappedBy = "item")
+    private List<ListItem> listItems;
 
-    private String menge;
-
-    private String produktgruppe;
-
-    private String laden;
-
-    @OneToMany(mappedBy = "produkt")
-    private List<BenoetigtesProdukt> benoetigtesProduktListe;
-
+    public Item(String name) {
+        this.name = name;
+    }
 }

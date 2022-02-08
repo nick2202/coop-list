@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  coop-list-backend:
+    container_name: coop-list-backend
+    build:
+      context: docker-coop-list-backend
+      dockerfile: Dockerfile
+    image: coop-list-backend:latest
+    ports:
+      - "18888:18888"
+    networks:
+      - spring-cloud-network
+  coop-list-frontend:
+    container_name: coop-list-frontend
+    build:
+      context: docker-coop-list-frontend
+      dockerfile: Dockerfile
+    image: coop-list-frontend:latest
+    ports:
+      - "19999:19999"
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge

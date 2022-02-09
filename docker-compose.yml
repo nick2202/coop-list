@@ -2,7 +2,7 @@ version: '3.8'
 services:
   coop-list-backend:
     depends_on:
-      - mysqldb
+      - mysqldb_2
     container_name: coop-list-backend
     build:
       context: coop-list-backend
@@ -26,7 +26,7 @@ services:
       - "19999:19999"
     networks:
       - spring-cloud-network
-  mysqldb:
+  mysqldb_2:
     image: mysql:latest
     restart: always
     environment:

@@ -25,7 +25,7 @@ public class ListItem {
 
     @NotNull
     @ManyToOne
-    private Group group;
+    private ItemGroup itemGroup;
 
     @Column(updatable = false)
     @CreationTimestamp
@@ -36,8 +36,8 @@ public class ListItem {
 
     private boolean checked = false;
 
-    public ListItem(Item item, Group group) {
+    public ListItem(Item item, ItemGroup itemGroup) {
         this.item = item;
-        this.group = group;
+        this.itemGroup = itemGroup;
     }
 }

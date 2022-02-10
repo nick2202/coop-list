@@ -11,23 +11,23 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ItemGroup {
+public class ItemList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "item_group_id")
+    @Column(name = "item_list_id")
     private Long id;
 
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "itemGroup")
+    @OneToMany(mappedBy = "itemList")
     private List<ListItem> listItems;
 
-    @ManyToMany(mappedBy = "itemGroups")
+    @ManyToMany(mappedBy = "itemLists")
     private List<AppUser> appAppUsers;
 
-    public ItemGroup(String name) {
+    public ItemList(String name) {
         this.name = name;
     }
 }

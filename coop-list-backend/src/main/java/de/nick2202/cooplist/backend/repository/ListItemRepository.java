@@ -1,8 +1,8 @@
 package de.nick2202.cooplist.backend.repository;
 
-import de.nick2202.cooplist.backend.model.ListItem;
 import de.nick2202.cooplist.backend.model.Item;
-import de.nick2202.cooplist.backend.model.ItemGroup;
+import de.nick2202.cooplist.backend.model.ItemList;
+import de.nick2202.cooplist.backend.model.ListItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,5 +12,5 @@ public interface ListItemRepository extends JpaRepository<ListItem, Long> {
 
     List<ListItem> findAll();
 
-    Optional<ListItem> findAllByItemAndItemGroup(Item item, ItemGroup itemGroup);
+    Optional<ListItem> findAllByItemAndItemList(Item item, ItemList itemList);
 }

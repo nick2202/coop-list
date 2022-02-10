@@ -20,7 +20,7 @@ public class AppUserService {
         newAppUser.setPassword(appUser.getPassword());
         newAppUser.setFirstName(appUser.getFirstName());
         newAppUser.setLastName(appUser.getLastName());
-        newAppUser.setItemGroups(appUser.getItemGroups());
+        newAppUser.setItemLists(appUser.getItemLists());
         System.out.println(appUser);
         System.out.println(newAppUser);
         return repo.save(newAppUser);

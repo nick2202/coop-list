@@ -35,10 +35,10 @@ public class AppUser {
     private Boolean isAdmin = false;
 
     @ManyToMany
-    @JoinTable(name = "user_group",
+    @JoinTable(name = "list_group",
             joinColumns = @JoinColumn(name = "app_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_group_id"))
-    private List<ItemGroup> itemGroups;
+            inverseJoinColumns = @JoinColumn(name = "item_list_id"))
+    private List<ItemList> itemLists;
 
     public AppUser(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;

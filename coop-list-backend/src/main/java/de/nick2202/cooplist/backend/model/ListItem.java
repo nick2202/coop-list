@@ -1,6 +1,8 @@
 package de.nick2202.cooplist.backend.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -25,7 +27,7 @@ public class ListItem {
 
     @NotNull
     @ManyToOne
-    private ItemGroup itemGroup;
+    private ItemList itemList;
 
     @Column(updatable = false)
     @CreationTimestamp
@@ -36,8 +38,8 @@ public class ListItem {
 
     private boolean checked = false;
 
-    public ListItem(Item item, ItemGroup itemGroup) {
+    public ListItem(Item item, ItemList itemList) {
         this.item = item;
-        this.itemGroup = itemGroup;
+        this.itemList = itemList;
     }
 }

@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <maven.version>2.6.1</maven.version>
+        <maven.version>3.6.3</maven.version>
     </properties>
 
     <modules>

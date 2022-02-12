@@ -12,5 +12,7 @@ public interface ListItemRepository extends JpaRepository<ListItem, Long> {
 
     List<ListItem> findAll();
 
-    Optional<ListItem> findAllByItemAndItemList(Item item, ItemList itemList);
+    Optional<ListItem> findFirstByItem(Item item);
+
+    List<ListItem> findAllByItemListAndItem(ItemList itemList, Item item);
 }

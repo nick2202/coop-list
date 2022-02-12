@@ -15,19 +15,25 @@ public class ItemList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "item_list_id")
+    @Column(name = "item_list.item_list_id")
     private Long id;
 
-    @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "itemList")
+    @OneToMany(mappedBy = "itemList", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<ListItem> listItems;
 
-    @ManyToMany(mappedBy = "itemLists")
-    private List<AppUser> appAppUsers;
+    @JoinTable(name = "item_list_users")
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<User> users;
 
-    public ItemList(String name) {
+    public static ItemList addUserToList(ItemList itemList, User user) {
+        itemList.getUsers().add(user);
+        return itemList;
+    }
+
+    public ItemList(String name, List<User> users) {
         this.name = name;
+        this.users = users;
     }
 }

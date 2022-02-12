@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -12,11 +13,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AppUser {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "app_user_id")
+    @Column(name = "user_id")
     private Long id;
 
     @NotNull
@@ -29,21 +30,25 @@ public class AppUser {
     @NotNull
     private String userName;
 
+    @Column(unique = true)
+    @NotNull
+    @Email
+    private String email;
+
     @NotNull
     private String password;
 
     private Boolean isAdmin = false;
 
-    @ManyToMany
-    @JoinTable(name = "list_group",
-            joinColumns = @JoinColumn(name = "app_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_list_id"))
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<ItemList> itemLists;
 
-    public AppUser(String firstName, String lastName, String userName, String password) {
+
+    public User(String firstName, String lastName, String userName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.email = email;
         this.password = password;
     }
 }

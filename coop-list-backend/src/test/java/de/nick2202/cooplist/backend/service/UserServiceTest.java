@@ -15,14 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
 
-    @InjectMocks
-    private UserService userService;
-
     @Mock
     private UserRepository userRepository;
 
-    public UserServiceTest() {
-    }
+    @InjectMocks
+    private UserService userService;
 
     @Test
     public void registerUser() {

@@ -48,7 +48,7 @@ public class ItemListServiceTest {
     }
 
     @Test
-    public void addUser() {
+    public void addUserToList() {
         User user = new User();
         user.setId(1L);
         ItemList itemList = new ItemList("List", List.of(user));
@@ -63,21 +63,16 @@ public class ItemListServiceTest {
         Mockito.when(userRepository.findById(userToAdd.getId())).thenReturn(Optional.of(userToAdd));
 
         ItemList savedItemList = itemListRepository.save(itemList);
-        itemListService.addUser(user.getId(),
+        itemListService.addUserToList(user.getId(),
                 savedItemList.getId(),
                 userToAdd.getId());
         ItemList savedItemListWithNewUser = itemListRepository.save(itemList);
-        System.out.println(itemList.getUsers());
         itemList.setUsers(List.of(user, userToAdd));
-        Mockito.verify(itemListRepository, times(3)).save(Mockito.any(ItemList.class));
         Assertions.assertThat(savedItemListWithNewUser)
                 .hasFieldOrPropertyWithValue("name", itemList.getName())
                 .hasFieldOrPropertyWithValue("users", itemList.getUsers());
+        Mockito.verify(itemListRepository, times(3)).save(Mockito.any(ItemList.class));
 
     }
-    // gitflow test
 
-//    @Test
-//    public void deleteItemList() {
-//    }
 }

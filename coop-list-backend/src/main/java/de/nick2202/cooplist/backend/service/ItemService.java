@@ -20,7 +20,7 @@ public class ItemService {
      * @return {@link Item}
      */
     public Item getItem(Long id) {
-        return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Item not found."));
     }
 
     /**
@@ -30,7 +30,7 @@ public class ItemService {
      * @return {@link Item}
      */
     public Item getItem(String name) {
-        return repository.findFirstByName(name).orElseThrow(ResourceNotFoundException::new);
+        return repository.findFirstByName(name).orElseThrow(() -> new ResourceNotFoundException("Item not found."));
     }
 
     /**

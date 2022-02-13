@@ -38,4 +38,8 @@ public class ItemList {
         this.name = name;
         this.users = users;
     }
+
+    public ItemList(String name) {
+        this.name = name;
+    }
 }

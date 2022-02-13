@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.mockito.Mockito.times;
@@ -38,13 +38,13 @@ public class ListItemServiceTest {
     public void checkListItem() {
         Item item = new Item("Butter");
         User user = new User();
-        ItemList itemList = new ItemList("Shopping List", List.of(user));
+        ItemList itemList = new ItemList("Shopping List", Arrays.<User>asList(user));
         itemList.setId(1L);
         ListItem listItem = new ListItem(item, itemList);
 
         Mockito.when(listItemRepository.save(Mockito.any(ListItem.class)))
                 .then((Answer<ListItem>) invocationOnMock -> invocationOnMock.getArgument(0));
-        Mockito.when(listItemRepository.findAllByItemListAndItem(itemList, item)).thenReturn(List.of(listItem));
+        Mockito.when(listItemRepository.findAllByItemListAndItem(itemList, item)).thenReturn(Arrays.<ListItem>asList(listItem));
         Mockito.when(itemRepository.findFirstByName(item.getName())).thenReturn(Optional.of(item));
         Mockito.when(itemListRepository.findById(itemList.getId())).thenReturn(Optional.of(itemList));
 

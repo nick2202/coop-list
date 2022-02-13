@@ -9,6 +9,7 @@ import de.nick2202.cooplist.backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,7 @@ public class ItemListService {
      */
     public ItemList addItemList(String name, Long userId) {
         return itemListRepository.save(
-                new ItemList(name, List.of(userRepository.findById(userId)
+                new ItemList(name, Arrays.<User>asList(userRepository.findById(userId)
                         .orElseThrow(() -> new ResourceNotFoundException(Message.USER_NOT_FOUND)))));
     }
 
@@ -77,7 +78,6 @@ public class ItemListService {
                         .stream()
                         .filter(itemList -> itemList.getUsers().contains(userRepository.findById(userId)
                                 .orElseThrow(() -> new ResourceNotFoundException("User not part of itemList"))))
-                        .peek(System.out::println)
                         .findFirst()
                         .map(itemList -> ItemList.addUserToList(itemList, userRepository.findById(newUserId)
                                 .orElseThrow(() -> new ResourceNotFoundException("User to be added not found"))))

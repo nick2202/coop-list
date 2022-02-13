@@ -14,6 +14,8 @@ import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +36,8 @@ public class ItemListServiceTest {
     public void addItemList() {
         User user = new User();
         ListItem listItem = new ListItem();
-        ItemList itemList = new ItemList("List", List.of(user));
-        itemList.setListItems(List.of(listItem));
+        ItemList itemList = new ItemList("List", Arrays.<User>asList(user));
+        itemList.setListItems(Arrays.<ListItem>asList(listItem));
 
         Mockito.when(itemListRepository.save(Mockito.any(ItemList.class)))
                 .then((Answer<ItemList>) invocationOnMock -> invocationOnMock.getArgument(0));
@@ -51,7 +53,9 @@ public class ItemListServiceTest {
     public void addUserToList() {
         User user = new User();
         user.setId(1L);
-        ItemList itemList = new ItemList("List", List.of(user));
+        List<User> users = new ArrayList<User>();
+        users.add(user);
+        ItemList itemList = new ItemList("List", users);
         itemList.setId(2L);
         User userToAdd = new User();
         userToAdd.setId(3L);
@@ -67,7 +71,8 @@ public class ItemListServiceTest {
                 savedItemList.getId(),
                 userToAdd.getId());
         ItemList savedItemListWithNewUser = itemListRepository.save(itemList);
-        itemList.setUsers(List.of(user, userToAdd));
+        users.add(userToAdd);
+        itemList.setUsers(users);
         Assertions.assertThat(savedItemListWithNewUser)
                 .hasFieldOrPropertyWithValue("name", itemList.getName())
                 .hasFieldOrPropertyWithValue("users", itemList.getUsers());

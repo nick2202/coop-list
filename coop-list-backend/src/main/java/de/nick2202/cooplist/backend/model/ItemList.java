@@ -15,7 +15,7 @@ public class ItemList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "item_list.item_list_id")
+    @Column(name = "item_list_id")
     private Long id;
 
     private String name;
@@ -28,6 +28,8 @@ public class ItemList {
     private List<User> users;
 
     public static ItemList addUserToList(ItemList itemList, User user) {
+        List<User> users = itemList.getUsers();
+        System.out.println(users.getClass().getName());
         itemList.getUsers().add(user);
         return itemList;
     }

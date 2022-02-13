@@ -28,8 +28,10 @@ public class ListItemService {
                 new ListItem(
                         itemRepository
                                 .findFirstByName(itemName)
-                                .orElse(new Item(itemName)),
-                        itemListRepository.getById(listId)));
+                                .orElseGet(() -> itemRepository.save(new Item(itemName))),
+                        itemListRepository
+                                .findById(listId)
+                                .orElseThrow(() -> new ResourceNotFoundException("ItemList not found."))));
     }
 
     /**

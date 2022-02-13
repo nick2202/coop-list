@@ -33,15 +33,15 @@ public class ListItem {
     @CreationTimestamp
     private Timestamp timeAdded;
 
-    public static ListItem check(ListItem listItem) {
-        listItem.setChecked(true);
-        return listItem;
-    }
-
     @UpdateTimestamp
     private Timestamp timeChecked = null;
 
     private boolean checked = false;
+
+    public static ListItem check(ListItem listItem) {
+        listItem.setChecked(true);
+        return listItem;
+    }
 
     public ListItem(Item item, ItemList itemList) {
         this.item = item;

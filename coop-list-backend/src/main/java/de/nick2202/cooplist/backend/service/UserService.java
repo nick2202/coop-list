@@ -1,11 +1,10 @@
 package de.nick2202.cooplist.backend.service;
 
+import de.nick2202.cooplist.backend.exceptions.ResourceNotFoundException;
 import de.nick2202.cooplist.backend.model.User;
 import de.nick2202.cooplist.backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.lang.module.ResolutionException;
 
 @Service
 @AllArgsConstructor
@@ -29,7 +28,7 @@ public class UserService {
      * @param id Id of the user to be deleted.
      */
     public void deleteUser(Long id) {
-        repository.delete(repository.findById(id).orElseThrow(ResolutionException::new));
+        repository.deleteById(id);
     }
 
     /**
@@ -39,6 +38,8 @@ public class UserService {
      * @return {@link User}
      */
     public User getUserById(Long id) {
-        return repository.getById(id);
+        return repository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No user with this Id found."));
     }
 }

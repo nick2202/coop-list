@@ -8,20 +8,19 @@ import de.nick2202.cooplist.backend.model.ItemList;
 import de.nick2202.cooplist.backend.service.ItemListService;
 import de.nick2202.cooplist.backend.service.ListItemService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(path = "/{userId}/lists")
 @AllArgsConstructor
 public class ItemListController {
 
     private final ItemListDtoConverter itemListDtoConverter;
     private final ListItemDtoConverter listItemDtoConverter;
-    private final ListItemService listItemService;
     private final ItemListService itemListService;
+    private final ListItemService listItemService;
 
     @GetMapping
     public List<ItemList> getAllLists(@PathVariable Long userId) {

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -30,7 +29,11 @@ public class ItemList {
 
     public static ItemList addUserToList(ItemList itemList, User user) {
         // turn immutable into mutable (for mocks)
-        itemList.getUsers().stream().collect(Collectors.toList()).add(user);
+        itemList.getUsers()
+//                .stream()
+//                .collect(Collectors.toList())
+                .add(user);
+        System.out.println(itemList.getUsers());
         return itemList;
     }
 

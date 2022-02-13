@@ -1,6 +1,6 @@
 package de.nick2202.cooplist.backend.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.nick2202.cooplist.backend.model.Item;
 import de.nick2202.cooplist.backend.model.ItemList;
 import lombok.Data;
@@ -9,9 +9,9 @@ import lombok.Data;
 public class ListItemDto {
 
     private Long id;
-    @JsonIgnore
+    @JsonBackReference
     private Item item;
-    @JsonIgnore
+    @JsonBackReference
     private ItemList itemList;
 
 }

@@ -1,6 +1,7 @@
 package de.nick2202.cooplist.backend.service;
 
 import de.nick2202.cooplist.backend.exceptions.ResourceNotFoundException;
+import de.nick2202.cooplist.backend.exceptions.ResourceNotFoundException.Message;
 import de.nick2202.cooplist.backend.model.ItemList;
 import de.nick2202.cooplist.backend.model.User;
 import de.nick2202.cooplist.backend.repository.ItemListRepository;
@@ -25,7 +26,10 @@ public class ItemListService {
      * @return {@link List<ItemList>} of {@link ItemList}s
      */
     public List<ItemList> getItemLists(Long userId) {
-        return userRepository.findById(userId).orElseThrow(ResourceNotFoundException::new).getItemLists();
+        return userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(Message.USER_NOT_FOUND))
+                .getItemLists();
     }
 
     /**
@@ -53,7 +57,8 @@ public class ItemListService {
      */
     public ItemList addItemList(String name, Long userId) {
         return itemListRepository.save(
-                new ItemList(name, List.of(userRepository.findById(userId).orElseThrow(ResourceNotFoundException::new))));
+                new ItemList(name, List.of(userRepository.findById(userId)
+                        .orElseThrow(() -> new ResourceNotFoundException(Message.USER_NOT_FOUND)))));
     }
 
     /**
@@ -65,7 +70,7 @@ public class ItemListService {
      * @return {@link ItemList}
      */
     // functional programming example
-    public ItemList addUser(Long userId, Long listId, Long newUserId) {
+    public ItemList addUserToList(Long userId, Long listId, Long newUserId) {
         return itemListRepository.save(
                 itemListRepository
                         .findById(listId)
@@ -75,7 +80,7 @@ public class ItemListService {
                         .findFirst()
                         .map(itemList -> ItemList.addUserToList(itemList, userRepository.findById(newUserId)
                                 .orElseThrow(() -> new ResourceNotFoundException("User to be added not found"))))
-                        .orElseThrow(() -> new ResourceNotFoundException("List not found")));
+                        .orElseThrow(() -> new ResourceNotFoundException(Message.ITEM_LIST_NOT_FOUND)));
     }
 
     /**

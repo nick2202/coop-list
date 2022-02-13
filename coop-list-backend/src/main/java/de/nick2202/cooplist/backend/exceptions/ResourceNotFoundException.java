@@ -12,4 +12,17 @@ public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
         super(message);
     }
+
+    public ResourceNotFoundException(Message message) {
+        super(String.valueOf(message));
+    }
+
+
+    public enum Message {
+        ITEM_LIST_NOT_FOUND,
+        LIST_ITEM_NOT_FOUND,
+        ITEM_NOT_FOUND,
+        USER_NOT_FOUND
+    }
+
 }

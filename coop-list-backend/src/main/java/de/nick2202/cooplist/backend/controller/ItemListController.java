@@ -45,7 +45,7 @@ public class ItemListController {
 
     @PostMapping(value = "/{listId}/addUser")
     public ItemListDto addUser(@PathVariable Long userId, @PathVariable Long listId, @RequestParam Long newUserId) {
-        return itemListDtoConverter.toItemListDto(itemListService.addUser(userId, listId, newUserId));
+        return itemListDtoConverter.toItemListDto(itemListService.addUserToList(userId, listId, newUserId));
     }
 
     @PostMapping(value = "/{listId}/addListItem")

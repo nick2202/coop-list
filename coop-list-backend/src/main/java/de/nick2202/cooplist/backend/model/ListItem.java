@@ -1,8 +1,6 @@
 package de.nick2202.cooplist.backend.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,6 +12,8 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder(access = AccessLevel.PUBLIC)
 public class ListItem {
 
     @Id
@@ -22,11 +22,11 @@ public class ListItem {
     private Long id;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Item item;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ItemList itemList;
 
     @Column(updatable = false)

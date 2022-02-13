@@ -1,5 +1,6 @@
 package de.nick2202.cooplist.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,10 +24,12 @@ public class ListItem {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private Item item;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private ItemList itemList;
 
     @Column(updatable = false)

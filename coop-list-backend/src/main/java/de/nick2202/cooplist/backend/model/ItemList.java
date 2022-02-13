@@ -1,5 +1,7 @@
 package de.nick2202.cooplist.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,19 +23,18 @@ public class ItemList {
     private String name;
 
     @OneToMany(mappedBy = "itemList", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ListItem> listItems;
 
     @JoinTable(name = "item_list_users")
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<User> users;
 
     public static ItemList addUserToList(ItemList itemList, User user) {
-        // turn immutable into mutable (for mocks)
-        itemList.getUsers()
-//                .stream()
-//                .collect(Collectors.toList())
-                .add(user);
-        System.out.println(itemList.getUsers());
+        List<User> users = itemList.getUsers();
+        users.add(user);
+        itemList.setUsers(users);
         return itemList;
     }
 

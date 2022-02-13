@@ -1,5 +1,6 @@
 package de.nick2202.cooplist.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class Item {
     private String name;
 
     @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ListItem> listItems;
 
     public Item(String name) {

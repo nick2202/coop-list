@@ -1,5 +1,6 @@
 package de.nick2202.cooplist.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,6 +42,7 @@ public class User {
     private Boolean isAdmin = false;
 
     @ManyToMany(mappedBy = "users", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ItemList> itemLists;
 
 

@@ -70,10 +70,8 @@ public class ItemListService {
                 itemListRepository
                         .findById(listId)
                         .stream()
-                        .peek(System.out::println)
                         .filter(itemList -> itemList.getUsers().contains(userRepository.findById(userId)
                                 .orElseThrow(() -> new ResourceNotFoundException("User not part of itemList"))))
-                        .peek(System.out::println)
                         .findFirst()
                         .map(itemList -> ItemList.addUserToList(itemList, userRepository.findById(newUserId)
                                 .orElseThrow(() -> new ResourceNotFoundException("User to be added not found"))))

@@ -10,11 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <properties>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../target/site/jacoco-aggregate/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
-    </properties>
-
     <artifactId>coop-list-frontend</artifactId>
     <name>coop-list-frontend</name>
     <description>coop-list-frontend</description>

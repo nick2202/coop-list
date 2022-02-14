@@ -26,6 +26,9 @@
 
 ## 4. Metrics
 
+SonarQube (test coverage tried with Jacoco but did not work)
+![SonarQube](resources/SonarQube.png)
+
 ## 5. Clean Code
 
 [Cheat Sheet (Java)](resources/CleanCodeCheatSheet_JavaSpringBoot.pdf)
@@ -70,6 +73,8 @@
   ![Endpoint Test - registerUser (POST)](resources/PostmanIntegrationTest-RegisterUser.png)
 
 ## 8. Build Management CI/CD
+
+Used Jenkins and a pipeline to build from Github on a local server with a [Jenkins file](Jenkinsfile).
 
 ## 9. IDE
 

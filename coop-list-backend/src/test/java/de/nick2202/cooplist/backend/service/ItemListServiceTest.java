@@ -60,6 +60,8 @@ public class ItemListServiceTest {
         User userToAdd = new User();
         userToAdd.setId(3L);
 
+        //Jenkins test
+
         Mockito.when(itemListRepository.save(Mockito.any(ItemList.class)))
                 .then((Answer<ItemList>) invocationOnMock -> invocationOnMock.getArgument(0));
         Mockito.when(itemListRepository.findById(itemList.getId())).thenReturn(Optional.of(itemList));

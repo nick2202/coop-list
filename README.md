@@ -4,6 +4,28 @@
 - used merges
 - tried out Gitflow
 
+## 2. UML
+
+1. ERM
+   ![ERM](resources/ERM_CoopList.png)
+2. Sequence Diagrams
+    1. Sequence Diagram *addItemList* (manual)
+       ![Sequence Diagram (addItemList)](resources/SequenceDiagram_addItemList.png)
+    2. Sequence Diagram *addItemList* (generated)
+       ![Sequence Diagram (addItemList)](resources/ItemListController_addList.png)
+    3. Sequence Diagram *addUserToList* (generated)
+       ![Sequence Diagram (addUserToList)](resources/ItemListController_addUser.png)
+    4. Sequence Diagram *registerUser* (generated)
+       ![Sequence Diagram (registerUser)](resources/UserController_registerUser.png)
+3. Component Diagram
+   ![Component Diagram](resources/DeploymentDiagram_CoopList.png)
+
+## 3. Event Storming & DDD
+
+[Miro Board Event Storming](https://miro.com/app/board/uXjVONKivlY=/?invite_link_id=840858893108)
+
+## 4. Metrics
+
 ## 5. Clean Code
 
 [Cheat Sheet (Java)](resources/CleanCodeCheatSheet_JavaSpringBoot.pdf)
@@ -20,6 +42,7 @@
    e.g. [ItemListService](coop-list-backend/src/main/java/de/nick2202/cooplist/backend/service/ItemListService.java))
 8. see tests
 
+
 ## 6. Build Management
 
 ### Maven:
@@ -28,6 +51,7 @@
 - calls tests automatically
 - generated [API docs](coop-list-backend/src/main/resources/api-docs.yaml) with springdoc-openapi-ui as YAML (Maven
   dependency)
+
 
 ## 7. Tests
 
@@ -42,8 +66,10 @@
 - [ListItemRepositoryTest](coop-list-backend/src/test/java/de/nick2202/cooplist/backend/repository/ListItemRepositoryTest.java)
 - Endpoint Tests - Overview (manual via Postman)
   ![Endpoint - Overview](resources/PostmanIntegrationTests-Overview.png)
-- Endpoint Test - RegisterUser (POST) (manual via Postman)
-  ![Endpoint Test - RegisterUser (POST)](resources/PostmanIntegrationTest-RegisterUser.png)
+- Endpoint Test - *registerUser* (POST) (manual via Postman)
+  ![Endpoint Test - registerUser (POST)](resources/PostmanIntegrationTest-RegisterUser.png)
+
+## 8. Build Management CI/CD
 
 ## 9. IDE
 
@@ -85,7 +111,9 @@ use closures / anonymous functions:**
   constructor parameters)
 
 <br>
-missing:
+<br>
+
+**next features to be added:**
 
 - user authentication
 - frontend

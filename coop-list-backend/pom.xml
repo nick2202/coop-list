@@ -17,6 +17,8 @@
     <properties>
         <java.version>11</java.version>
         <maven.version>3.6.3</maven.version>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>

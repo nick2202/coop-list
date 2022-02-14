@@ -1,27 +1,44 @@
 package de.nick2202.cooplist.backend.service;
 
+import de.nick2202.cooplist.backend.exceptions.ResourceNotFoundException;
 import de.nick2202.cooplist.backend.model.Item;
+import de.nick2202.cooplist.backend.model.ListItem;
 import de.nick2202.cooplist.backend.repository.ItemRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ItemService {
 
     private final ItemRepository repository;
 
-    public Optional<Item> getItem(Long id) {
-        return repository.findById(id);
+    /**
+     * Get item by Id.
+     *
+     * @param id Id of the {@link Item}
+     * @return {@link Item}
+     */
+    public Item getItem(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Item not found."));
     }
 
-    public List<Item> getItemsByName(String name) {
-        return repository.findAllByName(name);
+    /**
+     * Get item by name.
+     *
+     * @param name name of the {@link Item}
+     * @return {@link Item}
+     */
+    public Item getItem(String name) {
+        return repository.findFirstByName(name).orElseThrow(() -> new ResourceNotFoundException("Item not found."));
     }
 
+    /**
+     * Add an {@link Item}. An {@link Item} is created automatically when adding a {@link ListItem} of which no {@link Item} exists yet).
+     *
+     * @param item {@link Item} to add.
+     * @return {@link Item}
+     */
     public Item addItem(Item item) {
         return repository.save(item);
     }

@@ -13,7 +13,7 @@
 
     <groupId>de.nick2202</groupId>
     <artifactId>coop-list</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <name>coop-list</name>
@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <maven.version>2.6.1</maven.version>
+        <maven.version>3.6.3</maven.version>
     </properties>
 
     <modules>
@@ -40,16 +40,91 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>net.karneim</groupId>
+            <artifactId>pojobuilder</artifactId>
+            <version>4.2.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.jacoco</groupId>-->
+        <!--            <artifactId>jacoco-maven-plugin</artifactId>-->
+        <!--            <version>0.8.6</version>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.15.0</version>
+                <configuration>
+                    <!-- optional configuration -->
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.6.1</version>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>unit</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*IntegrationTest.java</exclude>
+                                <exclude>**/*IntTest.java</exclude>
+                            </excludes>
+                            <!-- Run only tests whose name end with "UnitTest" -->
+                            <includes>
+                                <include>**/*UnitTest.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

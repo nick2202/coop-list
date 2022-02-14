@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  coop-list-backend:
+    depends_on:
+      - mysqldb_2
+    container_name: coop-list-backend
+    build:
+      context: coop-list-backend
+    image: coop-list-backend:latest
+    #    environment:
+    #      - SPRING_JPA_HIBERNATE_DDL-AUTO=update
+    #      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/coop-list-db
+    #      - SPRING_DATASOURCE_USERNAME=user
+    #      - SPRING_DATASOURCE_PASSWORD=password
+    #      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    ports:
+      - "18888:18888"
+    networks:
+      - spring-cloud-network
+  coop-list-frontend:
+    container_name: coop-list-frontend
+    build:
+      context: coop-list-frontend
+    image: coop-list-frontend:latest
+    ports:
+      - "19999:19999"
+    networks:
+      - spring-cloud-network
+  mysqldb_2:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+networks:
+  spring-cloud-network:
+    driver: bridge

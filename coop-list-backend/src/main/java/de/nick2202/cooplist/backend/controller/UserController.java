@@ -1,24 +1,32 @@
 package de.nick2202.cooplist.backend.controller;
 
-import de.nick2202.cooplist.backend.exceptions.BusinessException;
-import de.nick2202.cooplist.backend.model.User;
+import de.nick2202.cooplist.backend.converter.UserDtoConverter;
+import de.nick2202.cooplist.backend.dto.UserDto;
 import de.nick2202.cooplist.backend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path = "/user")
+@AllArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final UserDtoConverter userDtoConverter;
 
 
-    @RequestMapping(value = "/registerUser", method = {RequestMethod.GET, RequestMethod.POST})
-    public User registerBewohner(@ModelAttribute("bewohnerDto") User user) throws BusinessException {
-        userService.registerBewohner(user);
+    @PostMapping(value = "/register")
+    public UserDto registerUser(@RequestBody UserDto userDto) {
+        return userDtoConverter.toUserDto(userService.registerUser(userDtoConverter.toUser(userDto)));
+    }
 
-        return user;
+    @DeleteMapping(value = "/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+    }
+
+    @GetMapping(value = "/{userId}")
+    public UserDto getUser(@PathVariable Long userId) {
+        return userDtoConverter.toUserDto(userService.getUserById(userId));
     }
 }

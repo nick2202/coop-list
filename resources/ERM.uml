@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.hibernate_sequence</OriginalElement>
+  <nodes>
+    <node x="12.5" y="288.0">7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list</node>
+    <node x="-262.0" y="94.0">7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item</node>
+    <node x="-14.5" y="492.5">7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list_users</node>
+    <node x="-269.0" y="429.0">7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.user</node>
+    <node x="-12.0" y="40.0">7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.list_item</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.list_item" target="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list" relationship="REFERENCES">
+      <point x="45.25" y="-83.5" />
+      <point x="123.75" y="214.0" />
+      <point x="72.5" y="214.0" />
+      <point x="72.5" y="323.75" />
+      <point x="45.5" y="323.75" />
+      <point x="-33.0" y="39.5" />
+    </edge>
+    <edge source="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list_users" target="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.user" relationship="REFERENCES">
+      <point x="-95.0" y="6.5" />
+      <point x="-2.0" y="538.0" />
+      <point x="-2.0" y="536.5" />
+      <point x="-188.5" y="536.5" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.list_item" target="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item" relationship="REFERENCES">
+      <point x="-45.25" y="-83.5" />
+      <point x="33.25" y="132.0" />
+      <point x="-196.0" y="132.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list_users" target="7fa7ec1c-c9d3-4918-a359-fc99e38a2e88.TABLE:coop-list-db.item_list" relationship="REFERENCES">
+      <point x="-18.5" y="-39.0" />
+      <point x="60.0" y="453.5" />
+      <point x="87.5" y="453.5" />
+      <point x="87.5" y="367.0" />
+      <point x="33.0" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="-58.5" y="336.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
